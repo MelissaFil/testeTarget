@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Fibonacci</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Verificador de Fibonacci</h2>
+        <input type="number" id="numeroInput" placeholder="Digite um número">
+        <button onclick="verificarFibonacci()">Verificar</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function pertenceFibonacci(numero) {
+            let a = 0, b = 1;
+
+            while (b < numero) {
+                let temp = a + b;
+                a = b;
+                b = temp;
+            }
+
+            return b === numero || numero === 0;
+        }
+
+        function verificarFibonacci() {
+            const numero = parseInt(document.getElementById("numeroInput").value);
+            const resultado = document.getElementById("resultado");
+
+            if (isNaN(numero)) {
+                resultado.innerHTML = "Por favor, digite um número válido!";
+                resultado.style.color = "red";
+                return;
+            }
+
+            if (pertenceFibonacci(numero)) {
+                resultado.innerHTML = `O número ${numero} pertence à sequência de Fibonacci.`;
+                resultado.style.color = "green";
+            } else {
+                resultado.innerHTML = `O número ${numero} NÃO pertence à sequência de Fibonacci.`;
+                resultado.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
